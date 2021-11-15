@@ -1,159 +1,146 @@
 import java.net.*;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
+        import java.io.*;
+        import java.util.ArrayList;
+        import java.util.Scanner;
+        import java.util.concurrent.TimeUnit;
 
 class Emetteur {
 
     PrintWriter out;
     BufferedReader in;
 
-    Emetteur() {}
-
-    ArrayList<Tram> readFile(String fileName) throws FileNotFoundException {
-
-        ArrayList<Tram> frameList = new ArrayList<>();
-        Scanner scanner = new Scanner(new File(fileName)); // hardcoded pour les tests
-        int lineNBR = 0;
-
-        Character frameType = 'I';
-
-        while(scanner.hasNextLine())
-        {
-            Tram frame = new Tram(frameType, lineNBR++, scanner.nextLine());
-            frameList.add(frame);
-        }
-
-        return frameList;
+    Emetteur() {
     }
 
-    void sendFile(ArrayList<Tram> trames, int choix) throws IOException, InterruptedException {
-        int peutEnvoyer = 7; // nbr de trames qu'on peut envoyer avant d'attendre retour
-        int nombreTramesEnvoyees = 0; // nbr de trames dont on a recu la confirmation de reception
+    ArrayList<Tram> readFile() throws FileNotFoundException {
+
+        ArrayList<Tram> listOfTrams = new ArrayList<>();
+        Scanner scanner = new Scanner(new File("./file.txt"));
+        int lineNumber = 0;
+
+        Character type = 'I';
+
+        while (scanner.hasNextLine()) {
+            Tram tram = new Tram(type, lineNumber++, scanner.nextLine());
+            listOfTrams.add(tram);
+        }
+
+        return listOfTrams;
+    }
+
+    void sendFile(ArrayList<Tram> listOfTrams, int choice) throws IOException, InterruptedException {
+        int peutEnvoyer = 7; // max number of trams (0,1,2,3,4,5,6,7) Emitter can send
+        int nombreTramesEnvoyees = 0; // number of confirmed trams.
         int i = 0;
 
         boolean pasEncoreEteSabotte = true;
 
-        System.out.println("se prepare a l'envoi du fichier contenant " + trames.size() + " trames");
+        System.out.println("Sending File with " + listOfTrams.size() + " trams");
 
-        while (nombreTramesEnvoyees < trames.size()-1)
-        {
-            while(peutEnvoyer>0 && i<trames.size() )
-            {
-                if(choix==2 && i==trames.size()-2 && pasEncoreEteSabotte)
-                {
-                    System.out.println(" ( saute la trame " + i%8 + " contenant " + trames.get(i).getData() + " pour le test )");
-                    // do not send frame
+        while (nombreTramesEnvoyees < listOfTrams.size() - 1) {
+            while (peutEnvoyer > 0 && i < listOfTrams.size()) {
+                if (choice == 2 && i == listOfTrams.size() - 2 && pasEncoreEteSabotte) {
+                    System.out.println(" ( skip tram " + i % 8 + " having " + listOfTrams.get(i).getData() + " for testing )");
+                    // do not send tram
                     pasEncoreEteSabotte = false;
-                }
-                else if(choix==3 && i==trames.size()-2 && pasEncoreEteSabotte)
-                {
-                    System.out.println(" ( bousille le crc du frame " + i%8 + " contenant " + trames.get(i).getData() + " pour le test )");
-                    // do not send frame
-                    sendFrameBadCRC(trames.get(i));
+                } else if (choice == 3 && i == listOfTrams.size() - 2 && pasEncoreEteSabotte) {
+                    System.out.println(" ( sabotage tram crc " + i % 8 + " having " + listOfTrams.get(i).getData() + " for testing )");
+                    // do not send tram
+                    sendTramBadCRC(listOfTrams.get(i));
                     pasEncoreEteSabotte = false;
-                }
-                else {
-                    sendFrame(trames.get(i));
+                } else {
+                    sendTram(listOfTrams.get(i));
                 }
 
                 System.out.println(
-                        "Envoi de la trame " + ((int) trames.get(i).getNum() % 8) +
-                                " comportant le contenu : " +
-                                trames.get(i).getData());
+                        "Sending tram " + ((int) listOfTrams.get(i).getNum() % 8) +
+                                " whose content is : " +
+                                listOfTrams.get(i).getData());
                 peutEnvoyer--;
                 i++;
             }
 
-            // attend 3 sec et envoit pbit si rien recu
+            // wait for confirmation during 3 sec and after send pBit
             TimeUnit.SECONDS.sleep(3);
-            if (choix == 4 && nombreTramesEnvoyees == 6) in.readLine(); // perds la reponse RR 7 si on est en mode test option 4
+            if (choice == 4 && nombreTramesEnvoyees == 6)
+                in.readLine();
 
-            // il n'y a pas de réponse du receveur
-            if (!in.ready())
-            {
+            // No reply from receiver
+            if (!in.ready()) {
                 System.out.println("Rien recu pour 3 secondes, envoie une trame de type P");
-                sendFrame(new Tram('P', 0));
+                sendTram(new Tram('P', 0));
             }
-            Tram reponseDuReceveur = new Tram(in.readLine());
-            char typeDeReponse = reponseDuReceveur.getType();
+            Tram replyFromReceiver = new Tram(in.readLine());
+            char typeOfReply = replyFromReceiver.getType();
 
-            //réponse RR qui est du # de la dernière trame reçue + 1
-            if (typeDeReponse == 'A') {
-                peutEnvoyer = Math.min(7, trames.size() - i);
-                nombreTramesEnvoyees = reponseDuReceveur.getNum();
+            //Confirmation RR that is nbr of last received tram + 1
+            if (typeOfReply == 'A') {
+                peutEnvoyer = Math.min(7, listOfTrams.size() - i);
+                nombreTramesEnvoyees = replyFromReceiver.getNum();
 
-                System.out.println("serveur a repondu avec RR contenant num : " + reponseDuReceveur.getNum()%8);
+                System.out.println("server replied RR with num : " + replyFromReceiver.getNum() % 8);
 
             }
 
             // reponse REJ
             else {
-                System.out.println("serveur a repondu avec REJ contenant num : " + reponseDuReceveur.getNum()%8);
-                //ramener nombre de trames envoyées à la dernière trame non reçue
-                int indexTrameRenvoi = reponseDuReceveur.getNum();
-                System.out.println(" serveur doit renvoyer a partir de trame " + indexTrameRenvoi%8);
+                System.out.println("server replied REJ with num : " + replyFromReceiver.getNum() % 8);
+                //Bring nbr of sent trams to the last non received tram
+                int indexTrameRenvoi = replyFromReceiver.getNum();
+                System.out.println(" server must send from tram " + indexTrameRenvoi % 8);
                 nombreTramesEnvoyees = indexTrameRenvoi;
                 i = indexTrameRenvoi;
-                peutEnvoyer = 7- i%8;
+                peutEnvoyer = 7 - i % 8;
             }
         }
     }
 
-    void startConnection() throws IOException {
-        Socket clientSocket = new Socket("127.0.0.1", 6666);
+    void startConnecting() throws IOException {
+        Socket clientSocket = new Socket("localhost", 8082);
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
     }
 
-    void sendFrame(Tram trame) {
-        String stringFrame = trame.formatFrameToSend();
+    void sendTram(Tram tram) {
 
-        stringFrame = bitStuff(stringFrame);
+        String formattedTram = tram.formatTramToSend();
+        formattedTram = bitStuff(formattedTram);
 
-        // send the frame as a string
-        out.println(stringFrame);
+        // Write tram in buffer as a string
+        out.println(formattedTram);
     }
 
-    private String bitStuff(String frameString){
+    private String bitStuff(String str) {
         int counter = 0;
 
-        for(int i = 0; i<frameString.length(); i++)
-        {
-            if(frameString.charAt(i)=='1')
-            {
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '1') {
                 counter++;
-                if(counter==5)
-                {
-                    frameString = charAdd0At(frameString, i + 1);
+                if (counter == 5) {
+                    str = charAdd0At(str, i + 1);
                     counter = 0;
                 }
-            }
-            else if(frameString.charAt(i)=='0')
-            {
-                counter=0;
+            } else if (str.charAt(i) == '0') {
+                counter = 0;
             }
         }
-        return frameString;
+        return str;
     }
 
-    private static String charAdd0At(String str, int p) {
-        return str.substring(0, p) + '0' + str.substring(p);
+    private static String charAdd0At(String string, int i) {
+        return string.substring(0, i) + '0' + string.substring(i);
     }
 
-    private void sendFrameBadCRC(Tram trame) {
-        String stringFrame = trame.formatFrameToSend();
+    private void sendTramBadCRC(Tram tram) {
 
-        byte[] frameBytes = Tram.stringToByte(stringFrame);
+        String formattedTramToSend = tram.formatTramToSend();
+        byte[] frameBytes = Tram.stringToByte(formattedTramToSend);
 
-        frameBytes[frameBytes.length-2] = (byte)(~frameBytes[frameBytes.length-2]);
+        frameBytes[frameBytes.length - 2] = (byte) (~frameBytes[frameBytes.length - 2]);
 
-        stringFrame = Tram.arr10ToString(Tram.byteArrToArr10(frameBytes));
+        formattedTramToSend = Tram.arr10ToString(Tram.byteArrToArr10(frameBytes));
+        formattedTramToSend = bitStuff(formattedTramToSend);
 
-        stringFrame = bitStuff(stringFrame);
-
-        // send the frame as a string
-        out.println(stringFrame);
+        out.println(formattedTramToSend);
     }
 }

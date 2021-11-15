@@ -53,7 +53,7 @@ class Tram {
     }
 
     // Convert tram to byteArrayList b4 sending it through the socket.
-    String formatFrameToSend() {
+    String formatTramToSend() {
         // for CRC
         byte[] arrayOfByte;
         byte[] arrayCRC;

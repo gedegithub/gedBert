@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c025ec09-3cc9-4ae7-b0e3-048dd4c25e69" name="Default Changelist" comment="" />
+    <list default="true" id="c025ec09-3cc9-4ae7-b0e3-048dd4c25e69" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MainEmetteur.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MainRecepteur.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../socketProject/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hdlc.vpp" beforeDir="false" afterPath="$PROJECT_DIR$/../hdlc.vpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/hdlcProject/Emetteur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hdlcProject/Emetteur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/hdlcProject/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/hdlcProject/Recepteur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hdlcProject/Recepteur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Emetteur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Emetteur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Recepteur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recepteur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../socketProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../socketProject/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,12 +26,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="20f8ipLRcCkYAUvCTbaBYXMhdmW" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
@@ -44,14 +65,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Emetteur" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Emetteur" />
-      <module name="hdlcProject" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.MainEmetteur">
     <configuration name="Main" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="hdlcProject" />
@@ -59,23 +73,48 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Recepteur" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Recepteur" />
+    <configuration name="MainE" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainE" />
+      <module name="hdlcProject" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainEmetteur" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainEmetteur" />
+      <module name="hdlcProject" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainR" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainR" />
+      <module name="hdlcProject" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainRecepteur" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainRecepteur" />
       <module name="hdlcProject" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Emetteur" />
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.Recepteur" />
+      <item itemvalue="Application.MainE" />
+      <item itemvalue="Application.MainR" />
+      <item itemvalue="Application.MainRecepteur" />
+      <item itemvalue="Application.MainEmetteur" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainEmetteur" />
+        <item itemvalue="Application.MainRecepteur" />
+        <item itemvalue="Application.MainE" />
+        <item itemvalue="Application.MainR" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Recepteur" />
-        <item itemvalue="Application.Emetteur" />
       </list>
     </recent_temporary>
   </component>
@@ -92,10 +131,26 @@
       <workItem from="1636424414804" duration="2587000" />
       <workItem from="1636429206236" duration="12000" />
       <workItem from="1636736772503" duration="20983000" />
+      <workItem from="1636904314168" duration="9578000" />
+      <workItem from="1636943537173" duration="3684000" />
+      <workItem from="1637003430515" duration="10111000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

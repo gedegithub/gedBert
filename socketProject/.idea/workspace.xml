@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="887f21a9-7c61-4f8c-8667-f039421e85e0" name="Default Changelist" comment="" />
+    <list default="true" id="887f21a9-7c61-4f8c-8667-f039421e85e0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../hdlcProject/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hdlc.vpp" beforeDir="false" afterPath="$PROJECT_DIR$/../hdlc.vpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hdlcProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hdlcProject/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hdlcProject/out/production/hdlcProject/Emetteur.class" beforeDir="false" afterPath="$PROJECT_DIR$/../hdlcProject/out/production/hdlcProject/Emetteur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hdlcProject/out/production/hdlcProject/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hdlcProject/out/production/hdlcProject/Recepteur.class" beforeDir="false" afterPath="$PROJECT_DIR$/../hdlcProject/out/production/hdlcProject/Recepteur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hdlcProject/src/Emetteur.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hdlcProject/src/Emetteur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hdlcProject/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hdlcProject/src/Recepteur.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hdlcProject/src/Recepteur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +27,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="20ez1yXchNRiiVFBQm2GX0hsodF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -44,7 +61,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Client">
-    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client" />
       <module name="socketProject" />
       <method v="2">
@@ -58,6 +75,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Server" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Client" />
@@ -78,10 +99,22 @@
       <workItem from="1636419635225" duration="1587000" />
       <workItem from="1636421382562" duration="750000" />
       <workItem from="1636475403398" duration="705000" />
+      <workItem from="1636943449197" duration="81000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
