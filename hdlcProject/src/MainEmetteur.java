@@ -8,7 +8,7 @@ public class MainEmetteur {
 
         Emetteur emitterClient = new Emetteur();
 
-        System.out.println("Starting Emitter/Client ... and connecting to Receiver/Server using Go-Back-N \n");
+        System.out.println("\nStarting Emitter/Client ... \n& connecting to Receiver/Server using Go-Back-N \n");
         TimeUnit.SECONDS.sleep(2);
 
         emitterClient.startConnecting();
@@ -23,5 +23,6 @@ public class MainEmetteur {
         ArrayList<Tram> ListOfTram = emitterClient.readFile();
 
         emitterClient.sendFile(ListOfTram, 0);
+        emitterClient.closeConnection();
     }
 }

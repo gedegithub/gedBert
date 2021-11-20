@@ -2,20 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c025ec09-3cc9-4ae7-b0e3-048dd4c25e69" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainEmetteur.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainRecepteur.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../socketProject/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hdlc.vpp" beforeDir="false" afterPath="$PROJECT_DIR$/../hdlc.vpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file.txt" beforeDir="false" afterPath="$PROJECT_DIR$/file.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/hdlcProject/Emetteur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hdlcProject/Emetteur.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/hdlcProject/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/hdlcProject/MainEmetteur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hdlcProject/MainEmetteur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/hdlcProject/MainRecepteur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hdlcProject/MainRecepteur.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/hdlcProject/Recepteur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hdlcProject/Recepteur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/hdlcProject/Tram.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hdlcProject/Tram.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Emetteur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Emetteur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainEmetteur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainEmetteur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainRecepteur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainRecepteur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Recepteur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recepteur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../socketProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../socketProject/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,29 +64,8 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.MainEmetteur">
-    <configuration name="Main" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="hdlcProject" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainE" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MainE" />
-      <module name="hdlcProject" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MainEmetteur" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainEmetteur" />
-      <module name="hdlcProject" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainR" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MainR" />
       <module name="hdlcProject" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -102,9 +79,6 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Application.MainE" />
-      <item itemvalue="Application.MainR" />
       <item itemvalue="Application.MainRecepteur" />
       <item itemvalue="Application.MainEmetteur" />
     </list>
@@ -112,9 +86,6 @@
       <list>
         <item itemvalue="Application.MainEmetteur" />
         <item itemvalue="Application.MainRecepteur" />
-        <item itemvalue="Application.MainE" />
-        <item itemvalue="Application.MainR" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -134,6 +105,7 @@
       <workItem from="1636904314168" duration="9578000" />
       <workItem from="1636943537173" duration="3684000" />
       <workItem from="1637003430515" duration="10111000" />
+      <workItem from="1637440209175" duration="2133000" />
     </task>
     <servers />
   </component>

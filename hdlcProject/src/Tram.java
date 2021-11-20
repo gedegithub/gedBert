@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+
 /*       -----------------------------------------
 *  Tram: | Flag | Type | Num | Data | CRC | Flag |
 **       -----------------------------------------
    flag : 1 octet (01111110)
-   type : I , C , A, R, F, P
-   num  : 1 octet specify the number of the tram sent (I) or the receipt number (RR,REJ)
-   data : variable size , used to carry data, if receipt tram : size = null , size calculated by detecting flags
-   CRC  : contains the checksum computed using CRC , 2 octets, checksum is calculated on Type+Num+Data
+   type : 'I' , 'C' , 'A', 'R', 'F', 'P'
+   num  : tram number  or the number of confirmation tram (RR,REJ) over 1 octet
+   data : variable size for I tram only, other trams contain no data
+   CRC  : contains the checksum calculated (on Type+Num+Data) using CRC over 2 octets
  */
 class Tram {
 
-    private byte flag = 0b01111110;
     private char type;
     private byte num;
     private String data;
@@ -44,7 +44,6 @@ class Tram {
     Tram(String frameString) {
         byte[] frameBytes = stringToByte(frameString);
 
-        // set type
         this.type = (char) frameBytes[1];
         this.num = frameBytes[2];
         if (this.type == 'I') {
@@ -61,7 +60,8 @@ class Tram {
         ArrayList<Byte> byteArrayList = new ArrayList<>();
 
         //Adding flag, type and num for each Tram
-        byteArrayList.add(this.flag);
+        byte flag = 0b01111110;
+        byteArrayList.add(flag);
         byteArrayList.add((byte) this.type);
         byteArrayList.add(this.num);
 
@@ -73,9 +73,8 @@ class Tram {
             arrayCRC[1] = this.num;
 
             // add bytes of the data to CRC byte array
-            for (int i = 0; i < arrayOfByte.length; i++) {
-                arrayCRC[i + 2] = arrayOfByte[i];
-            }
+            System.arraycopy(arrayOfByte, 0, arrayCRC, 2, arrayOfByte.length);
+
             // to complete byteArrayList
             for (byte b : arrayOfByte) {
                 byteArrayList.add(b);
@@ -119,7 +118,7 @@ class Tram {
             int bits = bytes[i];
 
             for (int j = 0; j < 8; j++) {
-                arrayOfBits.add(bits & 1); // for example 1010110101 & 000000001 = 1 else 0
+                arrayOfBits.add(bits & 1); // AND operation
                 bits >>= 1; // now evaluate next one
             }
         }
@@ -128,7 +127,6 @@ class Tram {
         for (int i = 0; i < arrayOfBits.size(); i++) {
             intArr[i] = arrayOfBits.get(arrayOfBits.size() - i - 1);
         }
-
         return intArr;
     }
 
@@ -149,18 +147,18 @@ class Tram {
         return result;
     }
 
-    static ArrayList<Byte> convertToByteArrayList(int[] intArr) {
+    private static ArrayList<Byte> convertToByteArrayList(int[] intArr) {
 
         ArrayList<Byte> byteArrayList = new ArrayList<>();
 
         byte[] temp = stringToByte(arr10ToString(intArr));
-        for (int i = 0; i < temp.length; i++) {
-            byteArrayList.add(temp[i]);
+        for (byte b : temp) {
+            byteArrayList.add(b);
         }
         return byteArrayList;
     }
 
-    static int[] bitshift(int[] ints) {
+    private static int[] bitshift(int[] ints) {
         if (ints.length == 1) {
             return new int[]{0};
         }
@@ -170,7 +168,7 @@ class Tram {
     }
 
     //XOR operation with 2 bits given in entry
-    static int xor(int a, int b) {
+    private static int xor(int a, int b) {
         return a ^ b;
     }
 
