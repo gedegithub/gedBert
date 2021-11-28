@@ -30,7 +30,7 @@ public class MainEmetteur {
         }
         ArrayList<Tram> ListOfTram = emitterClient.readFile();
 
-        emitterClient.sendFile(ListOfTram, 0);
+        emitterClient.sendFile(ListOfTram);
         emitterClient.closeConnection();
     }
 }

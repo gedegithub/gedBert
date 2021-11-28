@@ -10,8 +10,8 @@ class Recepteur {
     private PrintWriter out;
     private BufferedReader in;
     private int at = 0;
-    private String test;
-    private ErrorGenerator errorGenerator = new ErrorGenerator();
+    private String testTram;
+    private Test test = new Test();
 
     void startConnection() throws IOException {
         serverSocket = new ServerSocket(8082);
@@ -34,21 +34,19 @@ class Recepteur {
 
             inputLine = bitUnStuff(inputLine);
             
-            if (test.equals("BIT") && errorGenerator.errorDecider(2)){
-                inputLine = errorGenerator.bitWiseError(inputLine);
+            if (testTram.equals("BIT") && test.errorDecider(2)){
+                inputLine = test.bitWiseError(inputLine);
 
-            } else if (test.equals("BURST") && errorGenerator.errorDecider(2)) {
-                inputLine = errorGenerator.burstError(inputLine, inputLine.length()/4);
+            } else if (testTram.equals("BURST") && test.errorDecider(2)) {
+                inputLine = test.burstError(inputLine, inputLine.length()/4);
 
-            } else if (test.equals("DELAY") && errorGenerator.errorDecider(2)) {
-                errorGenerator.delayTram();
+            } else if (testTram.equals("DELAY") && test.errorDecider(2)) {
+                test.delayTram();
 
-            } else if (test.equals("LOSS") && errorGenerator.errorDecider(2)){
+            } else if (testTram.equals("LOSS") && test.errorDecider(2)){
                 System.out.println("Losing tram");
                 continue;
             }
-
-
 
             tram = new Tram(inputLine);
 
@@ -123,8 +121,6 @@ class Recepteur {
 
     private void readLine() throws IOException {
 
-
-
         String inputLine = in.readLine();
 
         inputLine = bitUnStuff(inputLine);
@@ -173,5 +169,5 @@ class Recepteur {
         return str.substring(0, p) + str.substring(p + 1);
     }
 
-    public void setTest(String testType){ this.test = testType;}
+    void setTest(String testType){ this.testTram = testType;}
 }
