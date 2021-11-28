@@ -27,6 +27,7 @@ class Emetteur {
             Tram tram = new Tram(type, lineNumber++, scanner.nextLine());
             listOfTrams.add(tram);
         }
+
         return listOfTrams;
     }
 
@@ -41,11 +42,11 @@ class Emetteur {
 
         boolean notYetSabotaged = true;
 
-        System.out.println("Sending File using " + listOfTrams.size() + " trams\n");
+        System.out.println("Sending File using " + listOfTrams.size() + " trams");
 
-        while (tramCounter < listOfTrams.size() - 1) {
+        while (tramCounter <= listOfTrams.size() - 1) {
             while (windowSize > 0 && i < listOfTrams.size()) {
-                if (choice == 2 && i == listOfTrams.size() - 2 && notYetSabotaged) {
+                /*if (choice == 2 && i == listOfTrams.size() - 2 && notYetSabotaged) {
                     System.out.println(" ( skip tram " + i % 8 + " having " + listOfTrams.get(i).getData() + " for testing )");
                     // do not send tram
                     notYetSabotaged = false;
@@ -56,7 +57,9 @@ class Emetteur {
                     notYetSabotaged = false;
                 } else {
                     sendTram(listOfTrams.get(i));
-                }
+                }*/
+
+                sendTram(listOfTrams.get(i));
 
                 System.out.println(
                         "Sending tram " + ((int) listOfTrams.get(i).getNum() % 8) +
@@ -72,9 +75,10 @@ class Emetteur {
                 in.readLine();
 
             // No reply from receiver
-            if (!in.ready()) {
-                System.out.println("\nNo confirmation after time out of 3 sec, so send a ping tram P\n");
+            while(!in.ready()) {
+                System.out.println("No confirmation after time out of 3 sec, so send a ping tram P");
                 sendTram(new Tram('P', 0));
+                TimeUnit.SECONDS.sleep(3);
             }
             Tram replyFromReceiver = new Tram(in.readLine());
             char typeOfReply = replyFromReceiver.getType();
@@ -99,6 +103,12 @@ class Emetteur {
                 windowSize = 7 - i % 8;
             }
         }
+        for(int j = 0; i<10 ; i++){
+            sendTram(new Tram('F'));
+        }
+
+        System.out.println("Sending tram closing connection");
+        TimeUnit.SECONDS.sleep(3);
     }
 
     void startConnecting() throws IOException {

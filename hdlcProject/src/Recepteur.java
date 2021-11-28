@@ -10,6 +10,8 @@ class Recepteur {
     private PrintWriter out;
     private BufferedReader in;
     private int at = 0;
+    private String test;
+    private ErrorGenerator errorGenerator = new ErrorGenerator();
 
     void startConnection() throws IOException {
         serverSocket = new ServerSocket(8082);
@@ -25,32 +27,56 @@ class Recepteur {
         serverSocket.close();
     }
 
-    void listen() throws IOException {
+    void listen() throws IOException, InterruptedException {
         String inputLine;
         Tram tram;
         while ((inputLine = in.readLine()) != null) {
+
             inputLine = bitUnStuff(inputLine);
+            
+            if (test.equals("BIT") && errorGenerator.errorDecider(2)){
+                inputLine = errorGenerator.bitWiseError(inputLine);
+
+            } else if (test.equals("BURST") && errorGenerator.errorDecider(2)) {
+                inputLine = errorGenerator.burstError(inputLine, inputLine.length()/4);
+
+            } else if (test.equals("DELAY") && errorGenerator.errorDecider(2)) {
+                errorGenerator.delayTram();
+
+            } else if (test.equals("LOSS") && errorGenerator.errorDecider(2)){
+                System.out.println("Losing tram");
+                continue;
+            }
+
+
+
             tram = new Tram(inputLine);
-            processTram(tram, inputLine);
+
+            if(processTram(tram, inputLine)){
+                return;
+            }
         }
     }
 
-    private void processTram(Tram tram, String trameStr) throws IOException {
+    private boolean processTram(Tram tram, String trameStr) throws IOException {
         char type = tram.getType();
         if (type == 'C') {
-            System.out.println("Acknowledge receipt of a Go-Back-N tram\n");
+            System.out.println("Acknowledge receipt of a Go-Back-N tram");
             out.println(createRR(0).formatTramToSend());
         } else if (type == 'I') {
             verifyDataTram(tram, trameStr);
         } else if (type == 'P') {
-            System.out.println("\nPing received from Emitter\n");
+            System.out.println("Ping received from Emitter");
             Tram rr = createRR(at);
             out.println(rr.formatTramToSend());
             System.out.println("Sending RR tram having " + rr.getNum() % 8);
 
         } else if (type == 'F') {
             closeConnection();
+            System.out.println("Closing connection");
+            return true;
         }
+        return false;
     }
 
     private void verifyDataTram(Tram tram, String tramStr) throws IOException {
@@ -77,17 +103,17 @@ class Recepteur {
         if (CRCerror) {
             System.out.println("CRC error detected");
             out.println(createREJ(at).formatTramToSend());
-            System.out.println("\nSend REJ tram " + at % 8 + " to Emitter\n");
+            System.out.println("Send REJ tram " + at % 8 + " to Emitter");
             readLine();
         } else if (!compareNum2Counter(tram2ByteArray[2], (byte) at)) {
             out.println(createREJ(at).formatTramToSend());
             System.out.println("Missing Tram detected");
-            System.out.println("\nSend REJ tram " + at % 8 + " to Emitter\n");
+            System.out.println("Send REJ tram " + at % 8 + " to Emitter");
 
             readLine();
         } else {
             if ((at) % 8 == 6) {
-                System.out.println(" \nTime to send RR tram ");
+                System.out.println("Time to send RR tram ");
                 out.println(createRR((at + 1) % 8).formatTramToSend());
                 System.out.println("RR Tram sent " + ((at + 1) % 8) + " to Emitter ");
             }
@@ -96,15 +122,22 @@ class Recepteur {
     }
 
     private void readLine() throws IOException {
+
+
+
         String inputLine = in.readLine();
+
         inputLine = bitUnStuff(inputLine);
         Tram tramToErase = new Tram(inputLine);
+        if(tramToErase.getData() == null){return;}
+
         System.out.println("Received from Emitter: Tram num " + tramToErase.getNum() % 8 + " containing : \t" + tramToErase.getData());
 
         while (tramToErase.getNum() != at) {
             inputLine = in.readLine();
             inputLine = bitUnStuff(inputLine);
             tramToErase = new Tram(inputLine);
+            if(tramToErase.getData() == null){return;}
             System.out.println("Received from Emitter: Tram num " + tramToErase.getNum() % 8 + " containing : \t" + tramToErase.getData());
         }
         at++;
@@ -139,4 +172,6 @@ class Recepteur {
     private static String charRm0At(String str, int p) {
         return str.substring(0, p) + str.substring(p + 1);
     }
+
+    public void setTest(String testType){ this.test = testType;}
 }
