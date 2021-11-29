@@ -15,10 +15,10 @@ class Emetteur {
     Emetteur() {
     }
 
-    ArrayList<Tram> readFile() throws FileNotFoundException {
+    ArrayList<Tram> readFile(String file) throws FileNotFoundException {
 
         ArrayList<Tram> listOfTrams = new ArrayList<>();
-        Scanner scanner = new Scanner(new File("./file.txt"));
+        Scanner scanner = new Scanner(new File(file));
         int lineNumber = 0;
 
         Character type = 'I';
@@ -94,8 +94,8 @@ class Emetteur {
         TimeUnit.SECONDS.sleep(3);
     }
 
-    void startConnecting() throws IOException {
-        clientSocket = new Socket("localhost", 8082);
+    void startConnecting(int port) throws IOException {
+        clientSocket = new Socket("localhost", port);
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
     }

@@ -13,8 +13,8 @@ class Recepteur {
     private String testTram;
     private Test test = new Test();
 
-    void startConnection() throws IOException {
-        serverSocket = new ServerSocket(8082);
+    void startConnection(int port) throws IOException {
+        serverSocket = new ServerSocket(port);
         clientSocket = serverSocket.accept();
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -70,8 +70,9 @@ class Recepteur {
             System.out.println("Sending RR tram having " + rr.getNum() % 8);
 
         } else if (type == 'F') {
-            closeConnection();
+            System.out.println("Received 'F' tram");
             System.out.println("Closing connection");
+            closeConnection();
             return true;
         }
         return false;

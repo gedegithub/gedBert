@@ -6,12 +6,18 @@ public class MainEmetteur {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
+
+        if(args[3].compareTo("0") != 0){
+            System.out.println("Communication type other than Go-Back-N aren't supported. Please enter 0 as parameter to useGo-Back-N.");
+            return;
+        }
+
         Emetteur emitterClient = new Emetteur();
 
         System.out.println("\nStarting Emitter/Client ... \n& connecting to Receiver/Server using Go-Back-N \n");
         TimeUnit.SECONDS.sleep(2);
 
-        emitterClient.startConnecting();
+        emitterClient.startConnecting(Integer.parseInt(args[1]));
 
 
         Tram tram = new Tram('C');
@@ -28,7 +34,7 @@ public class MainEmetteur {
         }else{
             System.out.println("Connection establishment tram was lost");
         }
-        ArrayList<Tram> ListOfTram = emitterClient.readFile();
+        ArrayList<Tram> ListOfTram = emitterClient.readFile(args[2]);
 
         emitterClient.sendFile(ListOfTram);
         emitterClient.closeConnection();

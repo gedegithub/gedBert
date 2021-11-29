@@ -5,11 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c025ec09-3cc9-4ae7-b0e3-048dd4c25e69" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/$PRODUCT_WORKSPACE_FILE$" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/devoir 2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../IFT3325-tp2.docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../hdlc.vpp.bak_000f" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../hdlc.vpp.bak_001d" beforeDir="false" />
@@ -18,13 +13,7 @@
       <change beforePath="$PROJECT_DIR$/../hdlc.vpp.bak_004d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../hdlc.vpp.bak_005d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../hdlc.vpp.bak_006d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../socketProject/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../socketProject/out/production/socketProject/Tram.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../socketProject/src/Tram.java" beforeDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,22 +61,11 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="Application.MainEmetteur">
     <configuration name="MainEmetteur" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainEmetteur" />
       <module name="hdlcProject" />
+      <option name="PROGRAM_PARAMETERS" value="localhost 8082 &quot;./file.txt&quot; 0" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -95,6 +73,7 @@
     <configuration name="MainRecepteur" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainRecepteur" />
       <module name="hdlcProject" />
+      <option name="PROGRAM_PARAMETERS" value="8082" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -110,7 +89,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -141,13 +120,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

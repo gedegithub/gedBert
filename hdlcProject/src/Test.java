@@ -24,12 +24,10 @@ public class Test {
                 modifiedTram[changedBit] = '0';
             }
 
-            System.out.println("Introducing bitwise error on the following tram");
-            return String.valueOf(modifiedTram);
 
         }
 
-        return "";
+        return String.valueOf(modifiedTram);
     }
 
     //Change a serie of bits of the tram to introduce and error which should be detected with the CRC

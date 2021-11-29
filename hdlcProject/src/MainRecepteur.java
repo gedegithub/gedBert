@@ -51,7 +51,7 @@ public class MainRecepteur {
         }
 
 
-        receiverServer.startConnection();
+        receiverServer.startConnection(Integer.parseInt(args[0]));
         System.out.println("Receiver/Server started\n");
         receiverServer.listen();
     }
