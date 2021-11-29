@@ -39,6 +39,8 @@ class Emetteur {
         int windowSize = 7;
         int tramCounter = 0;
         int i = 0;
+        int broken = 0;
+
 
         System.out.println("Sending File using " + listOfTrams.size() + " trams");
 
@@ -52,6 +54,7 @@ class Emetteur {
                                 listOfTrams.get(i).getData());
                 windowSize--;
                 i++;
+                broken = 0;
             }
 
             // wait for confirmation during 3 sec and after send pBit
@@ -72,6 +75,14 @@ class Emetteur {
                 tramCounter = replyFromReceiver.getNum();
 
                 System.out.println("Receiver replied RR with num: " + replyFromReceiver.getNum() % 8);
+
+                if(broken == 2){
+                    windowSize++;
+                    broken = 0;
+                    i--;
+                }
+                broken++;
+
 
             }
 
