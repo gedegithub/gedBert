@@ -34,7 +34,7 @@ class Recepteur {
 
             inputLine = bitUnStuff(inputLine);
             
-            if (testTram.equals("BIT") && test.errorDecider(2)){
+            if (testTram.equals("BIT") && test.errorDecider(2))  {
                 inputLine = test.bitWiseError(inputLine);
 
             } else if (testTram.equals("BURST") && test.errorDecider(2)) {
@@ -43,7 +43,7 @@ class Recepteur {
             } else if (testTram.equals("DELAY") && test.errorDecider(2)) {
                 test.delayTram();
 
-            } else if (testTram.equals("LOSS") && test.errorDecider(2)){
+            } else if (testTram.equals("LOSS") && test.errorDecider(2)) {
                 System.out.println("Losing tram");
                 continue;
             }
