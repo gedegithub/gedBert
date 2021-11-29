@@ -130,19 +130,6 @@ class Emetteur {
         return string.substring(0, i) + '0' + string.substring(i);
     }
 
-    private void sendTramBadCRC(Tram tram) {
-
-        String formattedTramToSend = tram.formatTramToSend();
-        byte[] frameBytes = Tram.stringToByte(formattedTramToSend);
-
-        frameBytes[frameBytes.length - 2] = (byte) (~frameBytes[frameBytes.length - 2]);
-
-        formattedTramToSend = Tram.arr10ToString(Tram.byteArrToArr10(frameBytes));
-        formattedTramToSend = bitStuff(formattedTramToSend);
-
-        out.println(formattedTramToSend);
-    }
-
     void closeConnection() throws IOException {
         in.close();
         out.close();
