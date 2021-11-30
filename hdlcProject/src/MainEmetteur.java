@@ -15,18 +15,15 @@ public class MainEmetteur {
         Emetteur emitterClient = new Emetteur();
 
         System.out.println("\nStarting Emitter/Client ... \n& connecting to Receiver/Server using Go-Back-N \n");
-        TimeUnit.SECONDS.sleep(2);
 
         emitterClient.startConnecting(Integer.parseInt(args[1]));
 
 
         Tram tram = new Tram('C');
-        emitterClient.sendTram(tram);
-        TimeUnit.SECONDS.sleep(1);
 
         while(!emitterClient.in.ready()){
-            TimeUnit.SECONDS.sleep(3);
             emitterClient.sendTram(tram);
+            TimeUnit.SECONDS.sleep(5);
         }
         Tram tramInBuffer = new Tram(emitterClient.in.readLine());
         if (tramInBuffer.getType() == 'A') {

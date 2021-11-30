@@ -74,9 +74,9 @@ class Emetteur {
                 windowSize = Math.min(7, listOfTrams.size() - i);
                 tramCounter = replyFromReceiver.getNum();
 
-                System.out.println("Receiver replied RR : " + replyFromReceiver.getNum() % 8);
+                System.out.println("Receiver replied RR " + replyFromReceiver.getNum() % 8);
 
-                if(broken == 2){
+                if(broken == 1 && i == listOfTrams.size()){
                     windowSize++;
                     broken = 0;
                     i--;
@@ -88,13 +88,13 @@ class Emetteur {
 
             // REJ response
             else {
-                System.out.println("Receiver replied REJ : " + replyFromReceiver.getNum() % 8);
+                System.out.println("Receiver replied REJ " + replyFromReceiver.getNum() % 8);
                 //Bring nbr of sent trams to the last non received tram
                 int indexOfTramResent = replyFromReceiver.getNum();
                 System.out.println("Emitter must resend trams from num: " + indexOfTramResent % 8);
                 tramCounter = indexOfTramResent;
                 i = indexOfTramResent;
-                windowSize = 7 - i % 8;
+                windowSize = 7 /*- i % 8*/;
             }
         }
         for (int j = 0; i < 10; i++) {

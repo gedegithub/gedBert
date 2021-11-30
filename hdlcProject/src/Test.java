@@ -59,7 +59,7 @@ public class Test {
     void delayTram() throws InterruptedException {
 
         System.out.println("Delaying tram for 5 seconds");
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(4);
     }
 
     boolean errorDecider(int probabilityThreshold) {

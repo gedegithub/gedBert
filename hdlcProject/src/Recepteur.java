@@ -64,6 +64,7 @@ class Recepteur {
         } else if (type == 'I') {
             verifyDataTram(tram, trameStr);
         } else if (type == 'P') {
+
             System.out.println("Ping received from Emitter");
             Tram rr = createRR(at);
             out.println(rr.formatTramToSend());
@@ -108,7 +109,6 @@ class Recepteur {
             out.println(createREJ(at).formatTramToSend());
             System.out.println("Missing Tram detected");
             System.out.println("Send tram REJ " + at % 8 + " to Emitter");
-
             readLine();
         } else {
             if ((at) % 8 == 6) {

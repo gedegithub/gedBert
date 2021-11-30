@@ -7,8 +7,6 @@ public class MainRecepteur {
 
 
         System.out.println("\nStarting Receiver/server ...\n");
-        TimeUnit.SECONDS.sleep(2);
-
         Recepteur receiverServer = new Recepteur();
 
         System.out.println("Please enter an operating mode among the following: ");
