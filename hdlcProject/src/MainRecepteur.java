@@ -5,7 +5,6 @@ import java.util.concurrent.TimeUnit;
 public class MainRecepteur {
     public static void main(String[] args) throws IOException, InterruptedException {
 
-
         System.out.println("\nStarting Receiver/server ...\n");
         Recepteur receiverServer = new Recepteur();
 
@@ -20,7 +19,7 @@ public class MainRecepteur {
         String command = entry.nextLine();
         System.out.println(command);
 
-        switch(command){
+        switch (command) {
 
             case "1":
                 receiverServer.setTest("BIT");
@@ -47,7 +46,6 @@ public class MainRecepteur {
                 receiverServer.setTest("ERRORLESS");
                 break;
         }
-
 
         receiverServer.startConnection(Integer.parseInt(args[0]));
         System.out.println("Receiver/Server started\n");

@@ -5,6 +5,8 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 /* *  Emetteur = Client
+ *    References: https://docs.oracle.com/javase/tutorial/networking/sockets/readingWriting.html;
+                  StackOverflow
  */
 class Emetteur {
     private Socket clientSocket;
@@ -41,7 +43,6 @@ class Emetteur {
         int i = 0;
         int broken = 0;
 
-
         System.out.println("Sending File using " + listOfTrams.size() + " trams");
 
         while (tramCounter <= listOfTrams.size() - 1) {
@@ -76,14 +77,12 @@ class Emetteur {
 
                 System.out.println("Receiver replied RR " + replyFromReceiver.getNum() % 8);
 
-                if(broken == 1 && i == listOfTrams.size()){
+                if (broken == 1 && i == listOfTrams.size()) {
                     windowSize++;
                     broken = 0;
                     i--;
                 }
                 broken++;
-
-
             }
 
             // REJ response
