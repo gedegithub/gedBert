@@ -67,7 +67,7 @@ class Recepteur {
             System.out.println("Ping received from Emitter");
             Tram rr = createRR(at);
             out.println(rr.formatTramToSend());
-            System.out.println("Sending RR tram having " + rr.getNum() % 8);
+            System.out.println("Sending tram RR " + rr.getNum() % 8);
 
         } else if (type == 'F') {
             System.out.println("Received 'F' tram");
@@ -102,19 +102,19 @@ class Recepteur {
         if (CRCerror) {
             System.out.println("CRC error detected");
             out.println(createREJ(at).formatTramToSend());
-            System.out.println("Send REJ tram " + at % 8 + " to Emitter");
+            System.out.println("Send tram REJ " + at % 8 + " to Emitter");
             readLine();
         } else if (!compareNum2Counter(tram2ByteArray[2], (byte) at)) {
             out.println(createREJ(at).formatTramToSend());
             System.out.println("Missing Tram detected");
-            System.out.println("Send REJ tram " + at % 8 + " to Emitter");
+            System.out.println("Send tram REJ " + at % 8 + " to Emitter");
 
             readLine();
         } else {
             if ((at) % 8 == 6) {
                 System.out.println("Time to send RR tram ");
                 out.println(createRR((at + 1) % 8).formatTramToSend());
-                System.out.println("RR Tram sent " + ((at + 1) % 8) + " to Emitter ");
+                System.out.println("Tram RR " + ((at + 1) % 8) + " sent to Emitter ");
             }
             at++;
         }
