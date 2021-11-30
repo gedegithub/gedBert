@@ -1,13 +1,12 @@
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class Test {
+class Test {
 
     private Random random = new Random();
 
     //Change one bit of the tram to introduce and error which should be detected with the CRC
     String bitWiseError(String tram) {
-
 
         int tramLenght = tram.length();
         char[] modifiedTram = tram.toCharArray();
@@ -23,8 +22,6 @@ public class Test {
             } else {
                 modifiedTram[changedBit] = '0';
             }
-
-
         }
 
         return String.valueOf(modifiedTram);
@@ -32,7 +29,6 @@ public class Test {
 
     //Change a serie of bits of the tram to introduce and error which should be detected with the CRC
     String burstError(String tram, int burstLenght) {
-
 
         System.out.println("Introducing burst error on the following tram");
 
@@ -48,7 +44,6 @@ public class Test {
             } else {
                 modifiedTram[startingBit + i] = '0';
             }
-
         }
 
         return String.valueOf(modifiedTram);
@@ -63,8 +58,6 @@ public class Test {
     }
 
     boolean errorDecider(int probabilityThreshold) {
-
         return Math.random() * 10 < probabilityThreshold;
     }
-
 }

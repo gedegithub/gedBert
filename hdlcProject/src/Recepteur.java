@@ -2,7 +2,9 @@ import java.net.*;
 import java.io.*;
 
 /* *  Recepteur = Server
-*/
+ *    References: https://docs.oracle.com/javase/tutorial/networking/sockets/readingWriting.html;
+                  StackOverflow
+ */
 class Recepteur {
 
     private ServerSocket serverSocket;
@@ -33,12 +35,12 @@ class Recepteur {
         while ((inputLine = in.readLine()) != null) {
 
             inputLine = bitUnStuff(inputLine);
-            
-            if (testTram.equals("BIT") && test.errorDecider(2))  {
+
+            if (testTram.equals("BIT") && test.errorDecider(2)) {
                 inputLine = test.bitWiseError(inputLine);
 
             } else if (testTram.equals("BURST") && test.errorDecider(2)) {
-                inputLine = test.burstError(inputLine, inputLine.length()/4);
+                inputLine = test.burstError(inputLine, inputLine.length() / 4);
 
             } else if (testTram.equals("DELAY") && test.errorDecider(2)) {
                 test.delayTram();
@@ -50,7 +52,7 @@ class Recepteur {
 
             tram = new Tram(inputLine);
 
-            if(processTram(tram, inputLine)){
+            if (processTram(tram, inputLine)) {
                 return;
             }
         }
@@ -126,7 +128,9 @@ class Recepteur {
 
         inputLine = bitUnStuff(inputLine);
         Tram tramToErase = new Tram(inputLine);
-        if(tramToErase.getData() == null){return;}
+        if (tramToErase.getData() == null) {
+            return;
+        }
 
         System.out.println("Received from Emitter: Tram num " + tramToErase.getNum() % 8 + " containing : \t" + tramToErase.getData());
 
@@ -134,7 +138,9 @@ class Recepteur {
             inputLine = in.readLine();
             inputLine = bitUnStuff(inputLine);
             tramToErase = new Tram(inputLine);
-            if(tramToErase.getData() == null){return;}
+            if (tramToErase.getData() == null) {
+                return;
+            }
             System.out.println("Received from Emitter: Tram num " + tramToErase.getNum() % 8 + " containing : \t" + tramToErase.getData());
         }
         at++;
@@ -170,5 +176,7 @@ class Recepteur {
         return str.substring(0, p) + str.substring(p + 1);
     }
 
-    void setTest(String testType){ this.testTram = testType;}
+    void setTest(String testType) {
+        this.testTram = testType;
+    }
 }

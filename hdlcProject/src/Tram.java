@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/*       -----------------------------------------
+/* HDLC Protocol
+       -----------------------------------------
 *  Tram: | Flag | Type | Num | Data | CRC | Flag |
 **       -----------------------------------------
    flag : 1 octet (01111110)
@@ -9,6 +10,9 @@ import java.util.Arrays;
    num  : tram number  or the number of confirmation tram (RR,REJ) over 1 octet
    data : variable size for I tram only, other trams contain no data
    CRC  : contains the checksum calculated (on Type+Num+Data) using CRC over 2 octets
+
+   References: https://docs.oracle.com/javase/tutorial/networking/sockets/readingWriting.html;
+               StackOverflow
  */
 class Tram {
 
