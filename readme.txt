@@ -17,3 +17,5 @@
         2 : Introduce burst errors to frames
         3 : Introduce delay in tram transmission
         4 : Introduce tram loss in communication
+
+- Note that each type of error has a 0.2 chance of happening, so executions amy vary from each other.
