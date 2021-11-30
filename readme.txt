@@ -18,4 +18,5 @@
         3 : Introduce delay in tram transmission
         4 : Introduce tram loss in communication
 
-- Note that each type of error has a 0.2 chance of happening, so executions amy vary from each other.
+- Note that each type of error has a 0.2 chance of happening, so executions amy vary from each other and that if the file to test
+  is small enough, it is possible that no error happen.
